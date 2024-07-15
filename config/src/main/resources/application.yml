@@ -1,4 +1,2 @@
 server.port: 8888
-spring:
-  application.name: config
-  profiles.active: native
+spring.cloud.config.server.git.uri: file:///D:/Projects/demo/microservice-demo-config
