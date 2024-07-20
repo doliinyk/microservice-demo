@@ -1,0 +1,22 @@
+services:
+  config:
+    image: config:0.0.1
+    ports: [8888:8888]
+  discovery:
+    image: discovery:0.0.1
+    ports: [8761:8761]
+    depends_on: [config]
+  user:
+    image: user:0.0.1
+    ports: [8081:8081]
+    depends_on: [discovery, postgres]
+  gateway:
+    image: gateway:0.0.1
+    ports: [8080:8080]
+    depends_on: [user]
+  postgres:
+    image: postgres
+    ports: [5432:5432]
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=microservice-demo
